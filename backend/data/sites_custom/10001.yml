@@ -1,0 +1,16 @@
+# 自定义站点配置示例
+site_id: 10001
+name: "示例政府网站"
+url: "https://example.gov.cn"
+crawl_config:
+  delay: 3
+  timeout: 30
+  headers:
+    User-Agent: "PolicyPulse-Bot/1.0"
+selectors:
+  title: "h1"
+  content: ".content"
+  date: ".publish-date"
+  links: ".news-list a"
+category: policy
+region: "北京市"
