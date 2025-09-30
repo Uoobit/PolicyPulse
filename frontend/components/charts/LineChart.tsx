@@ -1,6 +1,6 @@
 "use client";
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 export interface LineChartProps {
   data: any[];
@@ -16,7 +16,7 @@ export function LineChart({ data, xKey, yKeys, colors = ["#3b82f6", "#ef4444", "
     <div className="w-full">
       {title && <h3 className="text-lg font-semibold mb-4">{title}</h3>}
       <ResponsiveContainer width="100%" height={height}>
-        <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+        <RechartsLineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis 
             dataKey={xKey} 
@@ -44,7 +44,7 @@ export function LineChart({ data, xKey, yKeys, colors = ["#3b82f6", "#ef4444", "
               activeDot={{ r: 6, stroke: colors[index % colors.length], strokeWidth: 2 }}
             />
           ))}
-        </LineChart>
+        </RechartsLineChart>
       </ResponsiveContainer>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 
 export interface PieChartProps {
   data: any[];
@@ -16,7 +16,7 @@ export function PieChart({ data, dataKey, nameKey, colors = ["#3b82f6", "#ef4444
     <div className="w-full">
       {title && <h3 className="text-lg font-semibold mb-4">{title}</h3>}
       <ResponsiveContainer width="100%" height={height}>
-        <PieChart>
+        <RechartsPieChart>
           <Pie
             data={data}
             cx="50%"
@@ -63,7 +63,7 @@ export function PieChart({ data, dataKey, nameKey, colors = ["#3b82f6", "#ef4444
               paddingTop: "20px"
             }}
           />
-        </PieChart>
+        </RechartsPieChart>
       </ResponsiveContainer>
     </div>
   );

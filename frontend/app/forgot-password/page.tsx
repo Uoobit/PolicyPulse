@@ -128,11 +128,11 @@ export default function ForgotPasswordPage() {
     
     try {
       setIsLoading(true);
-      await authService.resetPassword({
-        email: formData.email,
-        verification_code: formData.verificationCode,
-        new_password: formData.newPassword
-      });
+      await authService.resetPassword(
+        formData.email,
+        formData.verificationCode,
+        formData.newPassword
+      );
       
       toast.success("密码重置成功，请重新登录");
       router.push("/login");

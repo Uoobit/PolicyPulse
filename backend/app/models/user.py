@@ -3,7 +3,7 @@
 路径: /mnt/okcomputer/output/backend/app/models/user.py
 """
 
-from pydantic import BaseModel, EmailStr, Field, validator
+from pydantic import BaseModel, EmailStr, Field, validator, ConfigDict
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 from enum import Enum
@@ -41,10 +41,11 @@ class UserPreferences(BaseModel):
     signal_types: List[str] = Field(default_factory=list)
     conservative: bool = Field(default=True)
     
-    class Config:
-        json_encoders = {
+    model_config = ConfigDict(
+        json_encoders={
             str: lambda v: v.strip()
         }
+    )
 
 class UserNotifications(BaseModel):
     """用户通知配置"""
@@ -76,10 +77,11 @@ class UserBase(BaseModel):
     role: UserRole = Field(default=UserRole.USER)
     status: UserStatus = Field(default=UserStatus.TRIAL)
     
-    class Config:
-        json_encoders = {
+    model_config = ConfigDict(
+        json_encoders={
             datetime: lambda v: v.isoformat()
         }
+    )
 
 class UserCreate(UserBase):
     """用户创建模型"""
@@ -101,8 +103,12 @@ class UserInDB(UserBase):
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        json_encoders={
+            datetime: lambda v: v.isoformat()
+        }
+    )
 
 class UserResponse(UserBase):
     """用户响应模型"""
@@ -135,7 +141,7 @@ class VerificationCode(BaseModel):
     """验证码模型"""
     email: EmailStr
     code: str = Field(..., min_length=6, max_length=6)
-    purpose: str = Field(..., regex="^(register|reset_password)$")
+    purpose: str = Field(..., pattern="^(register|reset_password)$")
 
 # 导出模型
 __all__ = [

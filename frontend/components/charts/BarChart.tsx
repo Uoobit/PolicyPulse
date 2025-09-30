@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { BarChart as RechartsBarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 export interface BarChartProps {
   data: any[];
@@ -16,7 +16,7 @@ export function BarChart({ data, xKey, yKeys, colors = ["#3b82f6", "#ef4444", "#
     <div className="w-full">
       {title && <h3 className="text-lg font-semibold mb-4">{title}</h3>}
       <ResponsiveContainer width="100%" height={height}>
-        <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <RechartsBarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis 
             dataKey={xKey} 
@@ -44,7 +44,7 @@ export function BarChart({ data, xKey, yKeys, colors = ["#3b82f6", "#ef4444", "#
               radius={[4, 4, 0, 0]}
             />
           ))}
-        </BarChart>
+        </RechartsBarChart>
       </ResponsiveContainer>
     </div>
   );
