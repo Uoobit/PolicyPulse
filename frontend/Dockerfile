@@ -28,8 +28,9 @@ CMD ["npm", "run", "dev"]
 # 构建环境
 FROM base as builder
 
-# 安装所有依赖（包括开发依赖）
-RUN npm ci
+# 安装生产依赖
+RUN npm ci --only=production
+
 # 复制应用代码
 COPY . .
 
@@ -52,8 +53,7 @@ RUN apk add --no-cache libc6-compat
 COPY package.json package-lock.json* ./
 
 # 安装生产依赖
-#RUN npm ci --only=production && npm cache clean --force
-RUN npm install
+RUN npm ci --only=production && npm cache clean --force
 
 # 复制构建产物
 COPY --from=builder /app/.next ./.next

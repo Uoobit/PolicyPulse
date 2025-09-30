@@ -3,7 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { AuthProvider } from '@/components/auth-provider';
-import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ 
@@ -103,7 +103,7 @@ export default function RootLayout({
         >
           <AuthProvider>
             {children}
-            <ToastContainer
+            <Toaster
               position="top-right"
               autoClose={5000}
               hideProgressBar={false}
